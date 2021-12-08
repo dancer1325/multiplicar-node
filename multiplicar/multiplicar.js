@@ -6,16 +6,16 @@ console.clear(); // Clear the console
 
 let salida;
 let listarTabla = (base, limite = 10) => {
-    console.log("==================".green);
-    console.log(`tabla de ${base}`.green);
+    console.log("==================".green); // 1) As property
+    console.log(`tabla de ${base}`, colors.green); // 2) Using color object
     console.log("==================".green);
 
     for (let i = 1; i <= limite; i++) {
         salida += `${base} * ${i} = ${base * i}\n`;
         console.log(`${base} * ${i} = ${base * i}`);
     }
+    fs.writeFileSync(`tablas/tablasync-${base}-al-${limite}.txt`, salida); // Write in a file synchronously
 };
-fs.writeFileSync(`tablas/tablasync-${base}-al-${limite}.txt`, salida); // Write in a file synchronously
 
 let crearArchivo = (base, limite = 10) => {
     return new Promise((resolve, reject) => {
