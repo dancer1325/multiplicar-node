@@ -43,11 +43,11 @@ const argvYargsConcatenacionConAliasYLimiteArgv = require('yargs').command('list
     }
 }).help().argv;
 */
-const argv = require('./config/yargs').argv;
-const colors = require('colors/safe');
+const argv = require("./config/yargs").argv;
+const colors = require("colors/safe");
 
-const { crearArchivo, listarTabla } = require('./multiplicar/multiplicar');
-const multiplicar = require('./multiplicar/multiplicar');
+const { crearArchivo, listarTabla } = require("./multiplicar/multiplicar"); // Desustructuration to export the functions
+const multiplicar = require("./multiplicar/multiplicar");
 let comando = argv._[0];
 
 //Argumentos con el yargs definido en el app.js
@@ -92,11 +92,8 @@ fs.writeFile(`./ficheroExiste/tabla-${ base }.txt`, datos, (err) => {
 });
 */
 
-
 /*console.log(multiplicar);
 let crearArchivo2 = multiplicar.crearArchivo();*/
-
-
 
 //Prueba que se puede ejecutar el código de las variables funciones importadas
 /*let base = 7;
@@ -114,19 +111,14 @@ crearArchivo(base).then(archivo => {
 console.log(Number('5'));
 */
 
-
 //Variables que están siempre definidas cuando se ejecuta nodemon de un fichero .js
 //1) module
 /*console.log(module);
 //2)Process
 console.log(process);*/
 
-
-
 //process.argv   Argumentos que mandamos al ejecutar el node de un fichero.js
 //console.log(process.argv);
-
-
 
 //Ejecutamos el fichero de la forma node app OtroArgumento
 /*
@@ -144,15 +136,11 @@ crearArchivo(base).then(archivo => {
 })
 */
 
-
-
 //Obtener los argumentos con la librería yargs. Lo comparamos con el de process
 
 //let argvProcess = process.argv;
 //console.log(argvProcess);
 //console.log(argvYargs);
-
-
 
 //Parámetros obtenidos con alias
 /*
@@ -169,33 +157,26 @@ console.log(argvYargsConcatenacionConAliasYLimite.limite);
 console.log(argvYargsConcatenacionConAliasYLimite);
 */
 
-
-
-
 //Comandos independientes
 /*
 console.log(argvYargsConcatenacionConAliasYLimiteArgv);
 console.log(comando);
 */
 
-
 switch (comando) {
-
-    case 'listar':
+    case "listar":
         listarTabla(argv.base, argv.limite);
         break;
 
-    case 'crear':
+    case "crear":
         crearArchivo(argv.base, argv.limite)
-            .then(archivo => console.log(`Archivo creado: `, colors.green(archivo)))
-            .catch(e => console.log(e));
+            .then((archivo) => console.log(`Archivo creado: `, colors.green(archivo)))
+            .catch((e) => console.log(e));
         break;
 
     default:
-        console.log('Comando no reconocido');
-
+        console.log("Comando no reconocido");
 }
-
 
 /*
 // console.log(argv.base);
